@@ -15,7 +15,7 @@ def partone(lists):
     return sum(abs(sorted_lists[0][k] - sorted_lists[1][k]) for k in range(len(sorted_lists[0])))
 
 def parttwo(lists):
-    return sum(no * lists[1].count(no) for k, no in enumerate(lists[0]))
+    return sum(no * lists[1].count(no) for no in lists[0])
 
 lists = fix(read_input("input.txt"))
 print(partone(lists))
