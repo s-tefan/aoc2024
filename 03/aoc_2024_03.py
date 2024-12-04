@@ -5,7 +5,7 @@ def read_input(filename):
 def fix(lines):
     return ''.join(lines)
 
-class Universal(str):
+class Universal(frozenset):
     def __contains__(self, _):
         return True
 
