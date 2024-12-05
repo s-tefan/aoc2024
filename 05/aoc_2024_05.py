@@ -68,7 +68,6 @@ def parttwo(rules, lists):
 
 
 a, b = fix(read_input('05/input.txt'))
-print(a,b)
 s, incorrect = partone(a,b)
 print(s)
 print(parttwo(a, incorrect))
