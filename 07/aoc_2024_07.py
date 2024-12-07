@@ -13,7 +13,6 @@ def fix(lines):
     return [linefix(line) for line in lines]
 
 def greja(equation, value = None):
-    #print(equation, value)
     if not equation['operands']:
         return value == equation['value']
     elif value != None and value > equation['value']:
@@ -24,7 +23,6 @@ def greja(equation, value = None):
         greja({'value': equation['value'], 'operands': the_rest}, (1 if value == None else value) * firstoperand) 
 
 def greja2(equation, value = None):
-    #print(equation, value)
     if not equation['operands']:
         return value == equation['value']
     elif value != None and value > equation['value']:
