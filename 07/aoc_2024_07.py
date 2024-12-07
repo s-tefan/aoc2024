@@ -12,34 +12,21 @@ def fix(lines):
         return {'value': int(a), 'operands': c}
     return [linefix(line) for line in lines]
 
-def greja(equation, value = None):
+def greja(equation, part, value = None):
     if not equation['operands']:
         return value == equation['value']
     elif value != None and value > equation['value']:
         return False
     else:
         firstoperand, the_rest = equation['operands'][0], equation['operands'][1:] 
-        return greja({'value': equation['value'], 'operands': the_rest}, (0 if value == None else value) + firstoperand) or \
-        greja({'value': equation['value'], 'operands': the_rest}, (1 if value == None else value) * firstoperand) 
+        return greja({'value': equation['value'], 'operands': the_rest}, \
+                     value = (0 if value == None else value) + firstoperand, part = part) or \
+        greja({'value': equation['value'], 'operands': the_rest}, \
+              value = (1 if value == None else value) * firstoperand, part = part) or \
+        (False if part == 1 else greja({'value': equation['value'], 'operands': the_rest},\
+                                       value = int(('' if value == None else str(value)) + str(firstoperand)), part = part))
 
-def greja2(equation, value = None):
-    if not equation['operands']:
-        return value == equation['value']
-    elif value != None and value > equation['value']:
-        return False
-    else:
-        firstoperand, the_rest = equation['operands'][0], equation['operands'][1:] 
-        return greja2({'value': equation['value'], 'operands': the_rest}, (0 if value == None else value) + firstoperand) or \
-        greja2({'value': equation['value'], 'operands': the_rest}, (1 if value == None else value) * firstoperand) or \
-        greja2({'value': equation['value'], 'operands': the_rest}, int(('' if value == None else str(value)) + str(firstoperand)))
-    
-def partone(eqs):
-    return sum(map(lambda a: a['value'], filter(greja, eqs)))
-
-def parttwo(eqs):
-    return sum(map(lambda a: a['value'], filter(greja2, eqs)))
-
-data = fix(read_input("07/input.txt"))
-print(partone(data))
-print(parttwo(data))
+eqs = fix(read_input("07/input.txt"))
+print(sum(map(lambda a: a['value'], filter(lambda x:greja(x, part = 1), eqs))))
+print(sum(map(lambda a: a['value'], filter(lambda x:greja(x, part = 2), eqs))))
       
