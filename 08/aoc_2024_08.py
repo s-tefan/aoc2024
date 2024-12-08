@@ -58,7 +58,6 @@ def parttwo(data):
                 nfinish = min((a0//-d0) if d0 < 0 else (height-a0-1)//d0, a1//-d1 if d1 < 0 else (width-a1-1)//d1)
                 for n in range(nstart, nfinish + 1):
                     c = (a0 + n*d0, a1 + n*d1)
-                    print(a,b,c, n, nstart, nfinish)
                     antinodes.add(c)
     return len(antinodes)
 
