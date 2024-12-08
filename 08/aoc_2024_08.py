@@ -38,7 +38,6 @@ def partone(data):
             for b in antennas[freq][k+1:]:
                 for c in [tdiff(tmult(2,a),b), tdiff(tmult(2,b),a)]:
                     if 0 <= c[0] < height and 0 <= c[1] < width:
-                        #print(freq,a,b,c)
                         antinodes.add(c)
     return len(antinodes)
 
@@ -53,7 +52,6 @@ def parttwo(data):
                 b0, b1 = b
                 g = gcd(abs(b1-a1), abs(b0-a0))
                 d0, d1 = (b0-a0)//g, (b1-a1)//g
-                ad0, ad1 = abs(d0), abs(d1)
                 nstart = max(-(a0//d0) if d0 >= 0 else (height-a0-1)//d0, -(a1//d1) if d1 >= 0 else -((width-a1-1)//-d1) )
                 nfinish = min((a0//-d0) if d0 < 0 else (height-a0-1)//d0, a1//-d1 if d1 < 0 else (width-a1-1)//d1)
                 for n in range(nstart, nfinish + 1):
