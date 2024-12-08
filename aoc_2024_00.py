@@ -1,5 +1,5 @@
 '''
-AoC 2024 template
+AoC 2024 Day 0 template
 '''
 def read_input(filename):
     with open(filename) as f:
@@ -14,6 +14,6 @@ def partone(data):
 def parttwo(data):
     return None
 
-data = fix(read_input('test.txt'))
+data = fix(read_input('00/test.txt'))
 print(partone(data))
 print(parttwo(data))
