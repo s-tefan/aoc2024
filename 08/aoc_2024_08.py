@@ -2,6 +2,7 @@
 AoC 2024 Day 8
 '''
 from math import ceil
+import time
 
 def read_input(filename):
     with open(filename) as f:
@@ -58,7 +59,11 @@ def parttwo(data):
                     c = (a0 + n*d0, a1 + n*d1)
                     antinodes.add(c)
     return len(antinodes)
-
+ts = time.perf_counter()
 data = fix(read_input('08/input.txt'))
+t0 = time.perf_counter()
 print(partone(data))
+t1 = time.perf_counter()
 print(parttwo(data))
+t2 = time.perf_counter()
+print(t0 - ts, t1 - t0, t2 - t1)
