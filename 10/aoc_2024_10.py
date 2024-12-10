@@ -18,6 +18,7 @@ def part(data):
     topomap = []
     for r, line in enumerate(data):
         topomap.append([Pos((r,c), v) for c, v in enumerate(line)])
+    # neighbours
     for r, line in enumerate(topomap):
         for c, p in enumerate(line):
             if r == 0:
@@ -43,17 +44,19 @@ def part(data):
                     n = [(r,c-1), (r, c+1), (r-1,c), (r+1,c)]
             p.neighbours = [topomap[r][c] for (r,c) in n]
             p.pathto = []
+    # possible trail continuations
     for r in topomap:
         for p in r:
             for n in p.neighbours:
                 if n.height == p.height + 1:
                     p.pathto.append(n)
+    # compute scores and ratings
     ssum = 0
     rsum = 0
     for r in topomap:
         for p in r:
-            n = {p}
-            nn = {(p,)}
+            n = {p} # Part 1, scores
+            nn = {(p,)} # Part 2, ratings
             for h in range(9):
                 n = set(r for q in n  for r in q.pathto)
                 nn = set( pp + (r,) for pp in nn for r in pp[-1].pathto)
