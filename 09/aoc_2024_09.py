@@ -1,6 +1,7 @@
 """
 AoC 2024 Day 9
 """
+import time
 
 
 def read_input(filename):
@@ -65,8 +66,8 @@ def partone(data):
 
 def parttwo(data):
     files, empties = data
+    filesreordered = sorted(files, key=lambda x: x["pos"])
     for file in reversed(files):
-        filesreordered = sorted(files, key=lambda x: x["pos"])
         empties = [
             {
                 "pos": filesreordered[k]["pos"] + filesreordered[k]["blocks"],
@@ -82,13 +83,23 @@ def parttwo(data):
             if file["blocks"] <= emptyspace["blocks"]:
                 file["pos"] = emptyspace["pos"]
                 break
+        filesreordered.sort(key=lambda x: x["pos"])
+
     return sum(
         (2 * file["pos"] + file["blocks"] - 1) * file["blocks"] // 2 * k
         for k, file in enumerate(files)
     )
 
 
+t = [time.perf_counter()]
+tt = [time.process_time()]
 data = fix(read_input("09/input.txt"))
 print(partone(data))
+t.append(time.perf_counter())
+tt.append(time.process_time())
 data = fix2(read_input("09/input.txt"))
 print(parttwo(data))
+t.append(time.perf_counter())
+tt.append(time.process_time())
+print([t[k+1]-t[k] for k in range(len(t)-1)])
+print([tt[k+1]-tt[k] for k in range(len(tt)-1)])
