@@ -43,11 +43,12 @@ def partone(data):
 def parttwo(data):
     return sum(countit(75, k) for k in data)
 
-from time import process_time
+from time import process_time_ns
 data = fix(read_input("11/input.txt"))
-tt = [process_time()]
+tt = [process_time_ns()]
 print(partone(data))
-tt.append(process_time())
+tt.append(process_time_ns())
 print(parttwo(data))
-tt.append(process_time())
+tt.append(process_time_ns())
 print(tt[1]-tt[0], tt[2]-tt[1])
+print(len(cache))
