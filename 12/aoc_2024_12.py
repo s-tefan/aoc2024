@@ -95,8 +95,6 @@ def partone(data):
         s += len(reg) * perimeter
     return s
 
-    return None
-
 
 def parttwo(data):
     return None
